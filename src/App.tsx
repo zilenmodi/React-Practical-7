@@ -3,8 +3,8 @@ import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAppSelector } from "./hooks/reduxHooks";
 import HomePage from "./layouts/HomePage/HomePage";
-import LoginPage from "./layouts/LoginPage/LoginPage";
-import SignupPage from "./layouts/SignupPage/SignupPage";
+import LoginPage from "./layouts/AuthPages/LoginPage/LoginPage";
+import SignupPage from "./layouts/AuthPages/SignupPage/SignupPage";
 
 function App() {
   const { isLogin } = useAppSelector((state) => state.user);

@@ -7,15 +7,23 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { signUp, UserDatatype, logOut } from "../../store/UserSlice/userSlice";
+import React, { ReactNode, useState } from "react";
+import {
+  signUp,
+  UserDatatype,
+  logOut,
+} from "../../../store/UserSlice/userSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import style from "./style.module.css";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import style from "../style.module.css";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// type FileType = FileSystem && {
+//   [key:String] :any
+// }
 
 const SignupForm = () => {
   const dispatch = useAppDispatch();
@@ -37,14 +45,14 @@ const SignupForm = () => {
       .required("Confirm password is required"),
     imageUrl: Yup.mixed()
       .test("fileType", "Invalid file format", (value) => {
-        if (value) {
+        if (value instanceof File) {
           const supportedFormats = ["image/jpeg", "image/png", "image/jpg"];
           return supportedFormats.includes(value.type);
         }
         return true; // Allow empty field
       })
       .test("fileSize", "File size too large", (value) => {
-        if (value) {
+        if (value instanceof File) {
           const maxSize = 2 * 1024 * 1024; // 2MB
           return value.size <= maxSize;
         }
@@ -55,7 +63,7 @@ const SignupForm = () => {
   const userData: UserDatatype = {
     name: "",
     email: "",
-    phoneNo: "",
+    phoneNo: "+91 ",
     password: "",
     confirmPassword: "",
     imageUrl: "",
@@ -63,7 +71,6 @@ const SignupForm = () => {
 
   const onSubmit = (values: UserDatatype) => {
     dispatch(signUp({ ...values, imageUrl: imageString }));
-    console.log(values);
   };
 
   const onReset = () => {
@@ -94,7 +101,6 @@ const SignupForm = () => {
 
   return (
     <>
-      {isError && <ToastContainer />}
       <Box sx={{ width: "100%" }}>
         <Typography
           variant="h3"
@@ -145,9 +151,7 @@ const SignupForm = () => {
                   onBlur={formik.handleBlur}
                 />
                 {formik.errors.imageUrl && (
-                  <Typography variant="subtitle1">
-                    {formik.errors.imageUrl}
-                  </Typography>
+                  <h5>{formik.errors.imageUrl as unknown as ReactNode}</h5>
                 )}
               </Box>
             </Grid>
@@ -167,7 +171,9 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}
+                helperText={
+                  formik.touched.name && (formik.errors.name as React.ReactNode)
+                }
               />
             </Grid>
 
@@ -187,7 +193,10 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
+                helperText={
+                  formik.touched.email &&
+                  (formik.errors.email as React.ReactNode)
+                }
               />
             </Grid>
 
@@ -207,7 +216,10 @@ const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.phoneNo && Boolean(formik.errors.phoneNo)}
-                helperText={formik.touched.phoneNo && formik.errors.phoneNo}
+                helperText={
+                  formik.touched.phoneNo &&
+                  (formik.errors.phoneNo as React.ReactNode)
+                }
               />
             </Grid>
 
@@ -229,7 +241,10 @@ const SignupForm = () => {
                 error={
                   formik.touched.password && Boolean(formik.errors.password)
                 }
-                helperText={formik.touched.password && formik.errors.password}
+                helperText={
+                  formik.touched.password &&
+                  (formik.errors.password as React.ReactNode)
+                }
               />
             </Grid>
 
@@ -256,7 +271,7 @@ const SignupForm = () => {
                 }
                 helperText={
                   formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword
+                  (formik.errors.confirmPassword as React.ReactNode)
                 }
               />
             </Grid>

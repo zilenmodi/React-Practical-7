@@ -1,8 +1,7 @@
-import React from "react";
 import { Box, Container, Grid } from "@mui/material";
-import style from "./style.module.css";
+import style from "../style.module.css";
 import LoginForm from "./LoginForm";
-import GirlImage from "../../assets/girl.png";
+import GirlImage from "../../../assets/girl.png";
 
 const LoginPage = () => {
   return (

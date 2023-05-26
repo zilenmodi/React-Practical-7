@@ -1,12 +1,7 @@
-import React, { useState } from "react";
-import { signUp, UserDatatype } from "../../store/UserSlice/userSlice";
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
-import * as Yup from "yup";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { Box, Container, Grid } from "@mui/material";
 import SignupForm from "./SignupForm";
-import style from "./style.module.css";
-import GirlImage from "../../assets/girl.png";
+import style from "../style.module.css";
+import GirlImage from "../../../assets/girl.png";
 
 const SignupPage = () => {
   return (

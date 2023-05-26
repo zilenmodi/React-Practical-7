@@ -41,7 +41,7 @@ const HomePage = () => {
           }}
         >
           <Avatar
-            src={userData?.imageUrl}
+            src={userData?.imageUrl as string}
             sx={{ width: "150px", height: "150px", mb: 5 }}
           />
           <Typography variant="h6" color="hsl(34, 20%, 20%)">

@@ -7,15 +7,19 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { logIn, logOut, UserLoginType } from "../../store/UserSlice/userSlice";
+import {
+  logIn,
+  logOut,
+  UserLoginType,
+} from "../../../store/UserSlice/userSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import style from "./style.module.css";
+import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
+import style from "../style.module.css";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import React from "react";
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +38,6 @@ const LoginForm = () => {
 
   const onSubmit = (values: UserLoginType) => {
     dispatch(logIn(values));
-    console.log(values);
   };
 
   const formik = useFormik({
@@ -87,7 +90,10 @@ const LoginForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
+                helperText={
+                  formik.touched.email &&
+                  (formik.errors.email as React.ReactNode)
+                }
               />
             </Grid>
 
@@ -109,7 +115,10 @@ const LoginForm = () => {
                 error={
                   formik.touched.password && Boolean(formik.errors.password)
                 }
-                helperText={formik.touched.password && formik.errors.password}
+                helperText={
+                  formik.touched.password &&
+                  (formik.errors.password as React.ReactNode)
+                }
               />
             </Grid>
 
