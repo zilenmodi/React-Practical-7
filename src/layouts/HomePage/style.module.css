@@ -1,0 +1,12 @@
+.container {
+  background-color: hsl(34, 50%, 98%);
+  margin: 3rem;
+  padding: 2rem;
+  position: relative;
+}
+
+.logout_btn {
+  position: absolute !important;
+  top: 20px;
+  right: 20px;
+}
