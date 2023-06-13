@@ -1,0 +1,42 @@
+.container {
+  background-color: hsl(34, 50%, 98%);
+  margin: 3rem;
+  padding: 2rem;
+}
+
+.inputLabel {
+  color: hsl(34, 20%, 40%) !important;
+  font-weight: 500 !important;
+  margin-bottom: 4px;
+}
+
+.inputFileLabel {
+  color: hsl(34, 20%, 40%) !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px;
+}
+
+.inputText {
+  background-color: hsl(34, 50%, 98%) !important;
+  height: 62px !important;
+}
+
+.girlImage {
+  height: 100%;
+  width: 100%;
+}
+
+.profileContainer {
+  text-align: center !important;
+}
+
+.linkText {
+  color: hsl(34, 10%, 10%) !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    margin: 0;
+  }
+}
